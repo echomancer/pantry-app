@@ -16,9 +16,9 @@ class Producer < ActiveRecord::Base
 	private
 		def duplicates
 			self.name = self.name.titleize
-			store = Store.find_by(name: self.name)
-			if !store.nil?
-				if store.id != self.id
+			producer = Producer.find_by(name: self.name)
+			if !producer.nil?
+				if producer.id != self.id
 					errors.add(:name, "already exists.")
 				end
 			end

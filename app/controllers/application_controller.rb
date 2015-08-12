@@ -14,6 +14,24 @@ class ApplicationController < ActionController::Base
 		redirect_to root_path, :alert => exception.message
 	end
 
+  def after_sign_in_path_for(resource)
+  	# Set default redirect path based on user's role
+  	if resource.admin?
+  		redirect_path = users_path
+  	elsif resource.vip?
+  		redirect_path = root_path
+  	else
+  		redirect_path = root_path
+  	end
+    sign_in_url = new_user_session_url
+    if request.referer == sign_in_url
+      super
+    else
+      stored_location_for(resource) || request.referer || redirect_path
+    end
+  end
+
+
 	protected
 
 		def configure_permitted_parameters

@@ -11,10 +11,17 @@
   %tbody
     - @stores.each do |store|
       %tr
-        %td= link_to store.name, store
-        %td= link_to 'Edit', edit_store_path(store)
-        %td= link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          - if can? :show, store
+            = link_to store.name, store
+        %td
+          - if can? :update, store
+            = link_to 'Edit', edit_store_path(store)
+        %td
+          - if can? :destroy, store
+            = link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Store', new_store_path
+- if can? :create, @stores
+  = link_to 'New Store', new_store_path, {:class => 'btn btn-primary'}

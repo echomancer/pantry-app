@@ -1,0 +1,13 @@
+= simple_form_for(@food) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :producer, include_blank: false
+    = f.input :name
+    = f.input :upc
+    = f.input :servings
+    = f.input :serving_size
+    = f.select(:unit, Food.units.keys.map {|unit| [unit.titleize,unit]})
+
+  .form-actions
+    = f.button :submit

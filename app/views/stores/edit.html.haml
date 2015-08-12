@@ -2,6 +2,7 @@
 
 = render 'form'
 
-= link_to 'Show', @store
-\|
+- if can? :show, @store
+  = link_to 'Show', @store
+  \|
 = link_to 'Back', stores_path

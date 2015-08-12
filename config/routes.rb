@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :foods
   resources :producers
   resources :stores
   mount Upmin::Engine => '/admin'

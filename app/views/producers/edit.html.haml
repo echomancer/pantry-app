@@ -2,6 +2,7 @@
 
 = render 'form'
 
-= link_to 'Show', @producer
-\|
+- if can? :show, @producer
+  = link_to 'Show', @producer
+  \|
 = link_to 'Back', producers_path

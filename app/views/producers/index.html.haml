@@ -11,10 +11,17 @@
   %tbody
     - @producers.each do |producer|
       %tr
-        %td= link_to producer.name, producer
-        %td= link_to 'Edit', edit_producer_path(producer)
-        %td= link_to 'Destroy', producer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          - if can? :show, producer
+            = link_to producer.name, producer
+        %td
+          - if can? :update, producer
+            = link_to 'Edit', edit_producer_path(producer)
+        %td
+          - if can? :destroy, producer
+            = link_to 'Destroy', producer, :method => :delete, :data => { :confirm => 'Are you sure?' } 
 
 %br
 
-= link_to 'New Producer', new_producer_path
+- if can? :create, @producers
+  = link_to 'New Producer', new_producer_path, {:class => 'btn btn-primary'}
