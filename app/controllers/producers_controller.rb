@@ -5,7 +5,7 @@ class ProducersController < InheritedResources::Base
 	private
 
 		def producer_params
-			params.require(:producer).permit(:name, :slug)
+			params.require(:producer).permit(:name)
 		end
 end
 
