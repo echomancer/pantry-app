@@ -1,0 +1,10 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @producer.name
+
+- if can? :update, @producer
+  = link_to 'Edit', edit_producer_path(@producer)
+  \|
+= link_to 'Back', producers_path

@@ -1,0 +1,27 @@
+%h1 Listing producers
+
+%table.table-condensed
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @producers.each do |producer|
+      %tr
+        %td
+          - if can? :show, producer
+            = link_to producer.name, producer
+        %td
+          - if can? :update, producer
+            = link_to 'Edit', edit_producer_path(producer)
+        %td
+          - if can? :destroy, producer
+            = link_to 'Destroy', producer, :method => :delete, :data => { :confirm => 'Are you sure?' } 
+
+%br
+
+- if can? :create, Producer
+  = link_to 'New Producer', new_producer_path, {:class => 'btn btn-primary'}

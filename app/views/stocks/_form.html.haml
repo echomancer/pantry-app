@@ -1,0 +1,23 @@
+= simple_form_for(@stock) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .row
+      .col-xs-8.col-md-10
+        = f.association :store, include_blank: false
+      .col-xs-4.col-md-2
+        = link_to "Add Store", new_store_path, {:class => 'btn btn-primary move-it'}
+    .row
+      .col-xs-8.col-md-10
+        = f.association :food, include_blank: false, :label_method => :full_name
+      .col-xs-4.col-md-2
+        = link_to "Add Food", new_food_path, {:class => 'btn btn-primary move-it'}
+    = f.input :price
+    = f.input :quantity
+    =# f.input :discount
+    .row
+      .col-xs-12.col-md-12
+        = f.input :bought, as: :datetime_picker, wrapper: :ranged_datetime
+
+  .form-actions
+    = f.button :submit

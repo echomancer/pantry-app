@@ -1,0 +1,50 @@
+%h1 Food in Pantry
+
+= will_paginate @stocks
+%table.table-condensed
+  %thead
+    %tr
+      %th Store
+      %th Food
+      %th Price
+      %th Quantity
+      %th Discount
+      %th Bought
+      %th Remaining Servings
+      %th
+      %th
+      %th
+      %th
+
+  %tbody
+    - @stocks.each do |stock|
+      %tr
+        %td= stock.store.name
+        %td= stock.food.full_name
+        %td= stock.price
+        %td= stock.quantity
+        %td= stock.discount
+        %td= stock.bought
+        %td= stock.remaining
+        %td
+          -if can? :update, stock
+            = simple_form_for(stock, url: update_remaining_stock_path(stock)) do |f|
+              .row
+                .col-xs-5.col-md-6
+                  = f.input :remaining, default: 0
+                .col-xs-5.col-md-4
+                  = f.submit 'Remove Servings', :class => 'btn-xs btn btn-primary move-it'
+        %td
+          - if can? :show, stock
+            = link_to 'Show', stock
+        %td
+          - if can? :update, stock
+            = link_to 'Edit', edit_stock_path(stock)
+        %td
+          - if can? :destroy, stock
+            = link_to 'Destroy', stock, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+- if can? :create, Stock
+  = link_to 'New Pantry Item', new_stock_path, {:class => 'btn btn-primary'}

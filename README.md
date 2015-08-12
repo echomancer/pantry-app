@@ -23,7 +23,7 @@ Ruby on Rails
 
 This application requires:
 
-- Ruby 2.1.2
+- Ruby 2.2.2
 - Rails 4.2.1
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
@@ -43,8 +43,22 @@ Similar Projects
 Contributing
 ------------
 
+If you make improvements to this application, please share with others.
+
+* Fork the project on GitHub.
+* Make your feature addition or bug fix.
+* Commit with Git.
+* Send the author a pull request.
+
+If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
+
+
 Credits
 -------
 
+Primary Developer: Jason Perkins
+
 License
 -------
+
+[MIT License](http://www.opensource.org/licenses/mit-license)

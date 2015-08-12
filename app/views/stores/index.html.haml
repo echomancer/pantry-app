@@ -1,0 +1,27 @@
+%h1 Listing stores
+
+%table.table-condensed
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @stores.each do |store|
+      %tr
+        %td
+          - if can? :show, store
+            = link_to store.name, store
+        %td
+          - if can? :update, store
+            = link_to 'Edit', edit_store_path(store)
+        %td
+          - if can? :destroy, store
+            = link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+- if can? :create, Store
+  = link_to 'New Store', new_store_path, {:class => 'btn btn-primary'}
