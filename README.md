@@ -61,4 +61,4 @@ Primary Developer: Jason Perkins
 License
 -------
 
-"MIT License":http://www.opensource.org/licenses/mit-license
+[MIT License](http://www.opensource.org/licenses/mit-license)
