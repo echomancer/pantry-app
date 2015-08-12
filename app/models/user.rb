@@ -2,6 +2,14 @@ class User < ActiveRecord::Base
 	# Adding friendly id and slug candidates
 	extend FriendlyId
 	friendly_id :slug_candidates, use: [:slugged,:finders]
+
+	# Try build a slug based on the following fields in increasing order of specifity
+	def slug_candidates
+		[
+			[:name]
+		]
+	end
+
 	enum role: [:user, :vip, :admin]
 	after_initialize :set_default_role, :if => :new_record?
 
@@ -17,12 +25,5 @@ class User < ActiveRecord::Base
 	# Adding function to return role enum for admin pages
 	def role_enum
 		[:user,:vip,:admin]
-	end
-
-	# Try build a slug based on the following fields in increasing order of specifity
-	def slug_candidates
-		[
-			[:name]
-		]
 	end
 end

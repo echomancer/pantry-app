@@ -1,0 +1,20 @@
+%h1 Listing stores
+
+%table.table-condensed
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @stores.each do |store|
+      %tr
+        %td= link_to store.name, store
+        %td= link_to 'Edit', edit_store_path(store)
+        %td= link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Store', new_store_path
