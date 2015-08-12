@@ -21,6 +21,12 @@ gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'upmin-admin'
 gem "cancancan"
+gem "will_paginate"
+gem "bootstrap-will_paginate"
+# Gems for date time picker
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
 
 group :development do
   gem 'better_errors'

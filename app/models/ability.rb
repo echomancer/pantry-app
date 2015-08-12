@@ -30,12 +30,14 @@ class Ability
         # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
         user ||= User.new #guest user
+
+        alias_action :create, :read, :update, :destroy, :to => :crud
+
         if user.admin?
             can :manage, :all
-        elsif user.vip?
-            can [:create, :update, :read], [Producer,Store,Food,Stock]
         else
-            can :read, :all
+            can :crud, Stock, :user_id => user.id
+            can [:create, :read, :update], [Store,Producer,Food]
         end
     end
 end

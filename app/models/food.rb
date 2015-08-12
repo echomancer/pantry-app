@@ -17,6 +17,14 @@ class Food < ActiveRecord::Base
 	validates :name, presence: true
 	validate :duplicates
 
+	def full_name
+		"#{self.producer.name} #{self.name} #{self.total} #{self.unit.pluralize}"
+	end
+
+	def total
+		self.servings * self.serving_size
+	end
+
 	private
 		def duplicates
 			self.name = self.name.titleize

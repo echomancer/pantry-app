@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :stocks do
+  	member do 
+  		patch 'update_remaining'
+  	end
+  end
   resources :foods
   resources :producers
   resources :stores

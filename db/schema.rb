@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812155218) do
+ActiveRecord::Schema.define(version: 20150812163009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,25 @@ ActiveRecord::Schema.define(version: 20150812155218) do
 
   add_index "producers", ["name"], name: "index_producers_on_name", unique: true, using: :btree
   add_index "producers", ["slug"], name: "index_producers_on_slug", unique: true, using: :btree
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "store_id"
+    t.integer  "food_id"
+    t.decimal  "price"
+    t.decimal  "quantity"
+    t.decimal  "discount"
+    t.datetime "bought"
+    t.integer  "user_id"
+    t.string   "slug"
+    t.decimal  "remaining"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stocks", ["food_id"], name: "index_stocks_on_food_id", using: :btree
+  add_index "stocks", ["slug"], name: "index_stocks_on_slug", unique: true, using: :btree
+  add_index "stocks", ["store_id"], name: "index_stocks_on_store_id", using: :btree
+  add_index "stocks", ["user_id"], name: "index_stocks_on_user_id", using: :btree
 
   create_table "stores", force: :cascade do |t|
     t.string   "name"
@@ -103,4 +122,7 @@ ActiveRecord::Schema.define(version: 20150812155218) do
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   add_foreign_key "foods", "producers"
+  add_foreign_key "stocks", "foods"
+  add_foreign_key "stocks", "stores"
+  add_foreign_key "stocks", "users"
 end

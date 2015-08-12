@@ -2,12 +2,17 @@
   = f.error_notification
 
   .form-inputs
-    = f.association :producer, include_blank: false
+    .row
+      .col-xs-8.col-md-10
+        = f.association :producer, include_blank: false
+      .col-xs-4.col-md-2
+        = link_to "Add Producer", new_producer_path, {:class => 'btn btn-primary move-it'}
     = f.input :name
     = f.input :upc
     = f.input :servings
     = f.input :serving_size
-    = f.select(:unit, Food.units.keys.map {|unit| [unit.titleize,unit]})
+    .form-group.select.required.food_unit
+      = f.select(:unit, Food.units.keys.map {|unit| [unit.titleize,unit]}, {},{:class => 'select required form-control'})
 
   .form-actions
     = f.button :submit
