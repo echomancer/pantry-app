@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
   	if resource.admin?
   		redirect_path = users_path
   	elsif resource.vip?
-  		redirect_path = root_path
+  		redirect_path = stocks_path
   	else
-  		redirect_path = root_path
+  		redirect_path = stocks_path
   	end
     sign_in_url = new_user_session_url
     if request.referer == sign_in_url
